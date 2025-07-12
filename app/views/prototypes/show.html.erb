@@ -8,7 +8,10 @@
       <% if user_signed_in? && current_user.id == @prototype.user.id %>
         <div class="prototype__manage">
           <%= link_to "編集する", edit_prototype_path, class: :prototype__btn %>
-          <%= link_to "削除する", prototype_path(@prototype), method: :delete, class: :prototype__btn %>
+          <%= link_to "削除する", root_path(@prototype.id), data: { turbo_method: :delete }, class: :prototype__btn%>
+        </div>
+      <% else %>
+        <div class="prototype__manage">
         </div>
       <% end %>
       <div class="prototype__image">
@@ -43,7 +46,7 @@
         <ul class="comments_lists">
           <% @comments.each do |comment| %>
             <li class="comments_list">
-              <%= comment.content %>
+              <%= "#{@comment.content}" %>
               <%= link_to "#{comment.user.name}", users_path, class: :comment_user %>
             </li>
           <% end %>
