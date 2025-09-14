@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root to: "prototypes#index"
   resources :users
   resources :prototypes, only: [:index,:new,:create,:show,:edit,:update,:destroy] do
-    resources :comments
+    resources :comments 
+    collection do
+      get 'search'
+    end
   end
 end
